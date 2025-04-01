@@ -1,12 +1,11 @@
 import socket
-import time
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.bind(('localhost', 10100))
 s.listen(2)
-s.settimeout(1.0)  # Устанавливаем таймаут в 1 секунду
-print('Server listening')
+s.settimeout(1.0)
 
+print('Server listening')
 while True:
     try:
         client, addr = s.accept()
@@ -26,5 +25,4 @@ while True:
         s.close()
         break
     except socket.timeout:
-        # Игнорируем таймаут и продолжаем ожидание
         continue
